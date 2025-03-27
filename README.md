@@ -1,7 +1,12 @@
+![](Imagenes/Smartphones_1.jpg)
 # Project 1 - Smartphones
+
+
+
 ## Overview
 Hi! In this project I'm analyzing a Dataset about Smartphones that i Found on Kaggle Platform.
 My goal with this project is to practice the use of CTE's and some data cleansing using SQL, as well as to develop a small interactive dashboard in Power BI that allows to analyze some characteristics of cell phones over time.
+
 
 ## Objectives
   -  Use SQL Functions to remove characters on Numerical Data
@@ -74,6 +79,8 @@ FROM   valor_correcto;
 --Update valor_correcto set Mobile_Weight_G = Peso_Corerecto;
  ```
 
+
+
 **Example GB Measurment**
 ```sql
 WITH valor_correcto AS
@@ -86,6 +93,8 @@ WITH valor_correcto AS
 --Select * from valor_correcto;
 --Update valor_correcto set RAM_GB = RAM_correcta;
  ```
+
+![](Imagenes/Ejemplo_1.png)
 
 **MPX Indicator**
 
@@ -148,7 +157,10 @@ SET    ram_gb = Trim(ram_gb),
        screen_size_inches = Trim(screen_size_inches),
        launched_price_usa = Trim(launched_price_usa);
  ```
-## Data Visualization
+## Data Visualization - POWER BI
+I did not use very complicated DAX functions yet, just the creation of the basic measurements for each specification and some that I will show below.
+
+
 
 ### Transform Data
 
@@ -178,8 +190,11 @@ I Build 3 Pages with different visualiaztions,
 
 1. General Information: In this page, I put some general information about the Data Set, such as the number of Smartphones per year and per Company, and some Cards with the average specifications. And the Average Price per Year.
 
-
-From this visualizations I
+I created this type of Measures on DAX to concatenate the indicador in the Card
+ ```dax
+Tarjeta Almacenamiento Promedio = CONCATENATE(FORMAT([Almacenamiento Promedio],"Fixed"), " GB")
+ ```
+![](Imagenes/Dashboard_1.png)
 
 2. Specifications: This page shows some relationships between specifications. 
 I made 2 scatter plots, one to show the relationship betweem price and average storage. Higher prices and newer models indicate that the phone would have more RAM and storage, but it is interesting to see how between 2019 and 2023 the smartphones had similar prices and similar storage, and in 2024 the prices increased and so did the average storage. 
@@ -187,6 +202,8 @@ I made 2 scatter plots, one to show the relationship betweem price and average s
 In the second shows the relationship between the price of the cell phone and its weight and battery capacity, the more expensive and the heavier the cell phone tends to have more battery and heavier, although from the year 2022 the values are more similar. 
 
 The other two graphs show how the number of megapixels in the cameras has been increasing the more modern they are and the increase of battery and screen over the years.
+
+![](Imagenes/Dashboard_2.png)
 
 3. Score: In the third sheet I assigned a Score according to my tastes in cell phones with the following formula in DAX assigning a weight to each specification
 ```dax
@@ -200,6 +217,8 @@ SUMX (
 This shows the companies that would have cell phone models that fit more to what I like.
 
 I did the same with cameras, device dimensions (Weight and Size) and Processing (Storage and Ram).
+
+![](Imagenes/Dashboard_3.png)
 
 ## Conclusion
 It was interesting to see how after a certain year some specifications become “stagnant” in that they no longer increase significantly in value, I also found it interesting how OPPO turns out to be a brand that could be in line with my tastes in cell phones.
